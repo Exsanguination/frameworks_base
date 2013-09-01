@@ -1795,11 +1795,15 @@ public class PackageManagerService extends IPackageManager.Stub {
             }
 
             // Disable components marked for disabling at build-time
-            mDisabledComponentsList = new ArrayList<ComponentName>();
+
+           // mDisabledComponentsList = new ArrayList<ComponentName>();
+           // for (String name : mContext.getResources().getStringArray(
+             //       com.android.internal.R.array.config_disabledComponents)) {
+               // ComponentName cn = ComponentName.unflattenFromString(name);
+               // mDisabledComponentsList.add(cn);
             for (String name : mContext.getResources().getStringArray(
                     com.android.internal.R.array.config_disabledComponents)) {
                 ComponentName cn = ComponentName.unflattenFromString(name);
-                mDisabledComponentsList.add(cn);
                 Slog.v(TAG, "Disabling " + name);
                 String className = cn.getClassName();
                 PackageSetting pkgSetting = mSettings.mPackages.get(cn.getPackageName());
